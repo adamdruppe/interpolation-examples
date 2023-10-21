@@ -3,14 +3,7 @@ module lib.printf;
 import core.interpolation;
 import std.meta;
 
-template isInterpolatedMetadata(T) {
-	static if(is(T == InterpolatedLiteral!str, string str))
-		enum bool isInterpolatedMetadata = true;
-	else static if(is(T == InterpolatedExpression!str, string str))
-		enum bool isInterpolatedMetadata = true;
-	else
-		enum bool isInterpolatedMetadata = false;
-}
+import lib.helpers;
 
 template UserTypes(T...) {
 	alias helper = AliasSeq!();
