@@ -57,6 +57,11 @@ struct Formatted(T) {
 }
 
 void writefln(Args...)(InterpolationHeader header, Args args, InterpolationFooter footer) {
+	// A somewhat subtle thing to notice here is the format string is built at compile
+	// time. If we wanted to, we could use `writefln!(makeStdFormatString!Args)(args)` to
+	// opt into Phobos's existing compile time checks of the format strings with the users
+	// none the wiser. It is a pure implementation detail make possible by the interpolated
+	// metadata being available to any function that cares to process them.
 	// pragma(msg, Args);
 	// pragma(msg, makeStdFormatString!Args);
 	import std.stdio;
