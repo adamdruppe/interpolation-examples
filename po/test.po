@@ -1,0 +1,19 @@
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-26T13:18:35.3200292Z\n"
+"Language: test\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: 04-internationalization.d:143(tr!(InterpolatedLiteral!"I, ",
+#: InterpolatedExpression!"name", string, InterpolatedLiteral!", have a
+#: singular apple.", InterpolationFooter, InterpolationHeader,
+#: InterpolatedLiteral!"I, %d apples.", int).tr)
+#: InterpolatedExpression!"count", int, InterpolatedLiteral!"
+#: InterpolationFooter).tr)
+#, c-format
+msgid "I, $1, have a singular apple."
+msgid_plural "I, $1, have %d apples."
+msgstr[0] "GG $1"
+msgstr[1] "ggs %d, $1"

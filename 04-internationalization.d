@@ -13,7 +13,7 @@
         {
             "name": "i18n",
             "preGenerateCommands": [
-                "dub run --config=xgettext",
+                "dub run --config=xgettext --single 04-internationalization.d",
                 "dub run gettext:merge -- --popath=po --backup=none",
                 "dub run gettext:po2mo -- --popath=po --mopath=mo"
             ],
@@ -40,9 +40,14 @@ module demo.internationalization;
 *  **************/
 
 void main() {
+	mixin(gettext.main);
+
+	// try changing the language and the count
+	gettext.selectLanguage("./mo/test.mo");
+
+	int count = 1;
 
 	string name = "Adam";
-	int count = 5;
 
 	import std.stdio;
 	// you can pass an explicit variable to indicate the pluralness (then use %d in the string to represent it)
@@ -75,7 +80,7 @@ auto toTrString(Args...)(string pluralCode = null) {
 			if(pluralCode !is null && str == pluralCode)
 				result ~= "%d"; // the underlying lib assumes this one will have this specific thing
 			else
-				result ~= "%" ~ to!string(exprCount);
+				result ~= "$" ~ to!string(exprCount);
 		}
 	}
 
@@ -126,7 +131,7 @@ string tr(Args...)(InterpolationHeader header, Args args) {
 			static if(is(typeof(arg) == InterpolatedExpression!code, string code)) {
 				exprCount++;
 				// FIXME: should only replace from the last replacement forward
-				return str.replace("%" ~ to!string(exprCount), to!string(args[idx + 1]));
+				return str.replace("$" ~ to!string(exprCount), to!string(args[idx + 1]));
 			}
 		}
 
