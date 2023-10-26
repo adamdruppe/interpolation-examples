@@ -34,6 +34,7 @@
 +/
 module demo.internationalization;
 
+import std.stdio;
 
 /* **************
 	Usage
@@ -42,19 +43,42 @@ module demo.internationalization;
 void main() {
 	mixin(gettext.main);
 
-	// try changing the language and the count
-	gettext.selectLanguage("./mo/test.mo");
-
-	int count = 1;
-
 	string name = "Adam";
 
-	import std.stdio;
-	// you can pass an explicit variable to indicate the pluralness (then use %d in the string to represent it)
-	writeln(tr(i"I, $name, have a singular apple.", i"I, $name, have %d apples.", count));
+	void testPrint(int count) {
+		// you can pass an explicit variable to indicate the pluralness (then use %d in the string to represent it)
+		writeln(tr(i"I, $name, have a singular apple.", i"I, $name, have %d apples.", count));
 
-	// or it can figure it out
-	writeln(tr(i"I, $name, have a singular apple.", i"I, $name, have $count apples."));
+		// or it can figure it out
+		writeln(tr(i"I, $name, have a singular apple.", i"I, $name, have $count apples."));
+	}
+
+	// try changing the language and the count
+	gettext.selectLanguage(null); // use default language (English)
+
+	testPrint(1);
+	testPrint(5);
+
+	// runtime language swap
+	gettext.selectLanguage("mo/test.mo");
+
+	testPrint(1); // calling the same functions, now gives differently translated output
+	testPrint(5);
+
+	// using another language with other strings:
+
+	gettext.selectLanguage(null); // back to default language (English)
+
+	int coffees = 5;
+	int iq = -30;
+
+	// plural not supported here but it the same as above, but note that since there are two numeric arguments, you would have to specify which one matters to the translator
+	writeln(tr(i"You drink $coffees cups a day and it gives you $(coffees + iq) IQ"));
+
+	gettext.selectLanguage("mo/german.mo"); // change again
+
+	// print the same thing, see German output
+	writeln(tr(i"You drink $coffees cups a day and it gives you $(coffees + iq) IQ"));
 }
 
 
@@ -131,14 +155,14 @@ string tr(Args...)(InterpolationHeader header, Args args) {
 			static if(is(typeof(arg) == InterpolatedExpression!code, string code)) {
 				exprCount++;
 				// FIXME: should only replace from the last replacement forward
-				return str.replace("$" ~ to!string(exprCount), to!string(args[idx + 1]));
+				str = str.replace("$" ~ to!string(exprCount), to!string(args[idx + 1]));
 			}
 		}
 
 		return str;
 	}
 
-	enum isPlural = interpolationEndsAt != Args.length;
+	enum isPlural = interpolationEndsAt + 1 != Args.length;
 
 	static if(isPlural) {
 		alias singular = args[0 .. interpolationEndsAt()];
@@ -146,7 +170,7 @@ string tr(Args...)(InterpolationHeader header, Args args) {
 
 		return finalize(gettext.tr!(toTrString!singular(), toTrString!plural(getPluralArg().code))(args[getPluralArg().idx]));
 	} else {
-		return finalize(gettext.tr!(toTrString!args));
+		return finalize(gettext.tr!(toTrString!args()));
 	}
 }
 

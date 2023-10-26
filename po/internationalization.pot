@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26T13:18:35.3200292Z\n"
+"POT-Creation-Date: 2023-10-26T15:17:04.6911997Z\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: 04-internationalization.d:143(tr!(InterpolatedLiteral!"I, ",
+#: 04-internationalization.d:171(tr!(InterpolatedLiteral!"I, ",
 #: InterpolatedExpression!"name", string, InterpolatedLiteral!", have a singular
 #: apple.", InterpolationFooter, InterpolationHeader, InterpolatedLiteral!"I, ",
 #: InterpolatedExpression!"name", string, InterpolatedLiteral!", have %d
 #: apples.", InterpolationFooter, int).tr)
-#: 04-internationalization.d:143(tr!(InterpolatedLiteral!"I, ",
+#: 04-internationalization.d:171(tr!(InterpolatedLiteral!"I, ",
 #: InterpolatedExpression!"name", string, InterpolatedLiteral!", have a singular
 #: apple.", InterpolationFooter, InterpolationHeader, InterpolatedLiteral!"I, ",
 #: InterpolatedExpression!"name", string, InterpolatedLiteral!", have ",
@@ -33,3 +33,10 @@ msgid "I, $1, have a singular apple."
 msgid_plural "I, $1, have %d apples."
 msgstr[0] ""
 msgstr[1] ""
+
+#: 04-internationalization.d:173(tr!(InterpolatedLiteral!"You drink ",
+#: InterpolatedExpression!"coffees", int, InterpolatedLiteral!" cups a day and
+#: it gives you ", InterpolatedExpression!"coffees + iq", int,
+#: InterpolatedLiteral!" IQ", InterpolationFooter).tr)
+msgid "You drink $1 cups a day and it gives you $2 IQ"
+msgstr ""

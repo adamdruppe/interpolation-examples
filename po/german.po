@@ -1,0 +1,14 @@
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-26T13:18:35.3200292Z\n"
+"Language: german\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: 04-internationalization.d:173(tr!(InterpolatedLiteral!"You drink ",
+#: InterpolatedExpression!"coffees", int, InterpolatedLiteral!" cups a day and
+#: it gives you ", InterpolatedExpression!"coffees + iq", int,
+#: InterpolatedLiteral!" IQ", InterpolationFooter).tr)
+msgid "You drink $1 cups a day and it gives you $2 IQ"
+msgstr "Sie trinken $1 Tassen Kaffee am Tag. Dadurch erhöht sich Ihr IQ auf $2."
