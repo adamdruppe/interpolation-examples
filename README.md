@@ -32,7 +32,7 @@ To learn more about how these work, see my comment here: https://github.com/dlan
 
 This lets the library function tell, without a doubt, the difference between a string in the source code and a string that came from a variable. This helps you ensure that interpolated data is processed safely.
 
-The literal string being communicated to the library via a template argument also preserves the fact that it is available at compile time. Many of the examples in this repo use this fact to build data structures and validate formats at compile time. Like with the previous question, this ensures compatibility with all D features, including CTFE whenever possible.
+The literal string being communicated to the library via a template argument also preserves the fact that it is available at compile time. Many of the examples in this repo use this fact to build data structures and validate formats at compile time. Like with the previous question, this ensures compatibility with all D features, including CTFE, whenever possible.
 
 ## Why does it *not* implicitly convert to string?
 
@@ -47,7 +47,7 @@ D has several design decisions that trade a small amount of convenience for corr
 }
 
 void thing(shared(Object) o) {
-	o.toString(); // will not compile, might not be type safe, use `cast` if you are sure
+	o.toString(); // will not compile, might not be thread safe, use `cast` if you are sure
 }
 
 immutable(ubyte)[] storedData;

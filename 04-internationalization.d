@@ -47,10 +47,10 @@ void main() {
 
 	void testPrint(int count) {
 		// you can pass an explicit variable to indicate the pluralness (then use %d in the string to represent it)
-		writeln(tr(i"I, $name, have a singular apple.", i"I, $name, have %d apples.", count));
+		writeln(tr(i"I, $(name), have a singular apple.", i"I, $(name), have %d apples.", count));
 
 		// or it can figure it out
-		writeln(tr(i"I, $name, have a singular apple.", i"I, $name, have $count apples."));
+		writeln(tr(i"I, $(name), have a singular apple.", i"I, $(name), have $(count) apples."));
 	}
 
 	// try changing the language and the count
@@ -73,12 +73,12 @@ void main() {
 	int iq = -30;
 
 	// plural not supported here but it the same as above, but note that since there are two numeric arguments, you would have to specify which one matters to the translator
-	writeln(tr(i"You drink $coffees cups a day and it gives you $(coffees + iq) IQ"));
+	writeln(tr(i"You drink $(coffees) cups a day and it gives you $(coffees + iq) IQ"));
 
 	gettext.selectLanguage("mo/german.mo"); // change again
 
 	// print the same thing, see German output
-	writeln(tr(i"You drink $coffees cups a day and it gives you $(coffees + iq) IQ"));
+	writeln(tr(i"You drink $(coffees) cups a day and it gives you $(coffees + iq) IQ"));
 }
 
 

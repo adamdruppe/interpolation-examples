@@ -8,7 +8,7 @@ void main() {
 	int id = 65;
 	string term = "my thing & / or other thing";
 
-	auto url = Url(i"https://example.com/users/$id?search=$term");
+	auto url = Url(i"https://example.com/users/$(id)?search=$(term)");
 
 	writeln(url);
 
@@ -18,7 +18,7 @@ void main() {
 		//
 		// so we want to demonstrate validation here deliberately.
 		string path = "/this";
-		Url(i"https://example.com/users/$path?search=$term");
+		Url(i"https://example.com/users/$(path)?search=$(term)");
 		assert(0); // the above will throw
 	} catch(Exception e) {
 		// it will print out even the name of the `path` variable above!

@@ -14,7 +14,7 @@ void main() {
 	// use prepared statements appropriate for the db engine under the hood
 	int id = 1;
 	string name = "' DROP TABLE', '";
-	db.execi(i"INSERT INTO sample VALUES ($id, $name)");
+	db.execi(i"INSERT INTO sample VALUES ($(id), $(name))");
 
 	foreach(row; db.query("SELECT * from sample"))
 		writeln(row[0], ": ", row[1]);
